@@ -2,8 +2,9 @@ cmake_minimum_required(VERSION 3.10.2)
 
 set(CMAKE_CXX_STANDARD 17)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
+set(takeoff_land rotate_vehicle)
 
-project(takeoff_and_land)
+project(takeoff_land)
 
 if(NOT MSVC)
     add_definitions("-Wall -Wextra")
@@ -13,11 +14,11 @@ endif()
 
 find_package(MAVSDK REQUIRED)
 
-add_executable(takeoff_and_land
+add_executable(takeoff_land
     takeoff_land.cpp
 )
 
-target_link_libraries(takeoff_and_land
+target_link_libraries(takeoff_land
     MAVSDK::mavsdk_telemetry
     MAVSDK::mavsdk_action
     MAVSDK::mavsdk

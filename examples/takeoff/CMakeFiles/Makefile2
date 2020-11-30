@@ -53,7 +53,7 @@ CMAKE_BINARY_DIR = /home/cho/Documents/pixhawk/mavsdk/MAVSDK/examples/takeoff
 # Directory level rules for the build root directory
 
 # The main recursive "all" target.
-all: CMakeFiles/takeoff_and_land.dir/all
+all: CMakeFiles/takeoff_land.dir/all
 
 .PHONY : all
 
@@ -63,36 +63,36 @@ preinstall:
 .PHONY : preinstall
 
 # The main recursive "clean" target.
-clean: CMakeFiles/takeoff_and_land.dir/clean
+clean: CMakeFiles/takeoff_land.dir/clean
 
 .PHONY : clean
 
 #=============================================================================
-# Target rules for target CMakeFiles/takeoff_and_land.dir
+# Target rules for target CMakeFiles/takeoff_land.dir
 
 # All Build rule for target.
-CMakeFiles/takeoff_and_land.dir/all:
-	$(MAKE) -f CMakeFiles/takeoff_and_land.dir/build.make CMakeFiles/takeoff_and_land.dir/depend
-	$(MAKE) -f CMakeFiles/takeoff_and_land.dir/build.make CMakeFiles/takeoff_and_land.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/cho/Documents/pixhawk/mavsdk/MAVSDK/examples/takeoff/CMakeFiles --progress-num=1,2 "Built target takeoff_and_land"
-.PHONY : CMakeFiles/takeoff_and_land.dir/all
+CMakeFiles/takeoff_land.dir/all:
+	$(MAKE) -f CMakeFiles/takeoff_land.dir/build.make CMakeFiles/takeoff_land.dir/depend
+	$(MAKE) -f CMakeFiles/takeoff_land.dir/build.make CMakeFiles/takeoff_land.dir/build
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/cho/Documents/pixhawk/mavsdk/MAVSDK/examples/takeoff/CMakeFiles --progress-num=1,2 "Built target takeoff_land"
+.PHONY : CMakeFiles/takeoff_land.dir/all
 
 # Build rule for subdir invocation for target.
-CMakeFiles/takeoff_and_land.dir/rule: cmake_check_build_system
+CMakeFiles/takeoff_land.dir/rule: cmake_check_build_system
 	$(CMAKE_COMMAND) -E cmake_progress_start /home/cho/Documents/pixhawk/mavsdk/MAVSDK/examples/takeoff/CMakeFiles 2
-	$(MAKE) -f CMakeFiles/Makefile2 CMakeFiles/takeoff_and_land.dir/all
+	$(MAKE) -f CMakeFiles/Makefile2 CMakeFiles/takeoff_land.dir/all
 	$(CMAKE_COMMAND) -E cmake_progress_start /home/cho/Documents/pixhawk/mavsdk/MAVSDK/examples/takeoff/CMakeFiles 0
-.PHONY : CMakeFiles/takeoff_and_land.dir/rule
+.PHONY : CMakeFiles/takeoff_land.dir/rule
 
 # Convenience name for target.
-takeoff_and_land: CMakeFiles/takeoff_and_land.dir/rule
+takeoff_land: CMakeFiles/takeoff_land.dir/rule
 
-.PHONY : takeoff_and_land
+.PHONY : takeoff_land
 
 # clean rule for target.
-CMakeFiles/takeoff_and_land.dir/clean:
-	$(MAKE) -f CMakeFiles/takeoff_and_land.dir/build.make CMakeFiles/takeoff_and_land.dir/clean
-.PHONY : CMakeFiles/takeoff_and_land.dir/clean
+CMakeFiles/takeoff_land.dir/clean:
+	$(MAKE) -f CMakeFiles/takeoff_land.dir/build.make CMakeFiles/takeoff_land.dir/clean
+.PHONY : CMakeFiles/takeoff_land.dir/clean
 
 #=============================================================================
 # Special targets to cleanup operation of make.

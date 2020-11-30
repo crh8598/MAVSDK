@@ -111,17 +111,17 @@ depend:
 .PHONY : depend
 
 #=============================================================================
-# Target rules for targets named takeoff_and_land
+# Target rules for targets named takeoff_land
 
 # Build rule for target.
-takeoff_and_land: cmake_check_build_system
-	$(MAKE) -f CMakeFiles/Makefile2 takeoff_and_land
-.PHONY : takeoff_and_land
+takeoff_land: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 takeoff_land
+.PHONY : takeoff_land
 
 # fast build rule for target.
-takeoff_and_land/fast:
-	$(MAKE) -f CMakeFiles/takeoff_and_land.dir/build.make CMakeFiles/takeoff_and_land.dir/build
-.PHONY : takeoff_and_land/fast
+takeoff_land/fast:
+	$(MAKE) -f CMakeFiles/takeoff_land.dir/build.make CMakeFiles/takeoff_land.dir/build
+.PHONY : takeoff_land/fast
 
 takeoff_land.o: takeoff_land.cpp.o
 
@@ -129,7 +129,7 @@ takeoff_land.o: takeoff_land.cpp.o
 
 # target to build an object file
 takeoff_land.cpp.o:
-	$(MAKE) -f CMakeFiles/takeoff_and_land.dir/build.make CMakeFiles/takeoff_and_land.dir/takeoff_land.cpp.o
+	$(MAKE) -f CMakeFiles/takeoff_land.dir/build.make CMakeFiles/takeoff_land.dir/takeoff_land.cpp.o
 .PHONY : takeoff_land.cpp.o
 
 takeoff_land.i: takeoff_land.cpp.i
@@ -138,7 +138,7 @@ takeoff_land.i: takeoff_land.cpp.i
 
 # target to preprocess a source file
 takeoff_land.cpp.i:
-	$(MAKE) -f CMakeFiles/takeoff_and_land.dir/build.make CMakeFiles/takeoff_and_land.dir/takeoff_land.cpp.i
+	$(MAKE) -f CMakeFiles/takeoff_land.dir/build.make CMakeFiles/takeoff_land.dir/takeoff_land.cpp.i
 .PHONY : takeoff_land.cpp.i
 
 takeoff_land.s: takeoff_land.cpp.s
@@ -147,7 +147,7 @@ takeoff_land.s: takeoff_land.cpp.s
 
 # target to generate assembly for a file
 takeoff_land.cpp.s:
-	$(MAKE) -f CMakeFiles/takeoff_and_land.dir/build.make CMakeFiles/takeoff_and_land.dir/takeoff_land.cpp.s
+	$(MAKE) -f CMakeFiles/takeoff_land.dir/build.make CMakeFiles/takeoff_land.dir/takeoff_land.cpp.s
 .PHONY : takeoff_land.cpp.s
 
 # Help Target
@@ -158,7 +158,7 @@ help:
 	@echo "... depend"
 	@echo "... rebuild_cache"
 	@echo "... edit_cache"
-	@echo "... takeoff_and_land"
+	@echo "... takeoff_land"
 	@echo "... takeoff_land.o"
 	@echo "... takeoff_land.i"
 	@echo "... takeoff_land.s"
