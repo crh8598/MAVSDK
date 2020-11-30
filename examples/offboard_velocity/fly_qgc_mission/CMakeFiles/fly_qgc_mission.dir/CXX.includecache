@@ -1,0 +1,26 @@
+#IncludeRegexLine: ^[ 	]*[#%][ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+/home/cho/Documents/pixhawk/mavsdk/MAVSDK/examples/fly_qgc_mission/fly_qgc_mission.cpp
+mavsdk/mavsdk.h
+-
+mavsdk/plugins/action/action.h
+-
+mavsdk/plugins/mission/mission.h
+-
+mavsdk/plugins/telemetry/telemetry.h
+-
+functional
+-
+future
+-
+iostream
+-
+memory
+-
+

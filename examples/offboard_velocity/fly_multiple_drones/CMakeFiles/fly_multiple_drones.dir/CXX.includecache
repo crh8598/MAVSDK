@@ -1,0 +1,38 @@
+#IncludeRegexLine: ^[ 	]*[#%][ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+/home/cho/Documents/pixhawk/mavsdk/MAVSDK/examples/fly_multiple_drones/fly_multiple_drones.cpp
+mavsdk/mavsdk.h
+-
+mavsdk/plugins/action/action.h
+-
+mavsdk/plugins/mission/mission.h
+-
+mavsdk/plugins/telemetry/telemetry.h
+-
+cstdint
+-
+iostream
+-
+thread
+-
+chrono
+-
+functional
+-
+future
+-
+memory
+-
+string
+-
+ctime
+-
+fstream
+-
+

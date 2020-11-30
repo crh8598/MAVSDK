@@ -1,0 +1,28 @@
+#IncludeRegexLine: ^[ 	]*[#%][ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+/home/cho/Documents/pixhawk/mavsdk/MAVSDK/examples/offboard_velocity/offboard_velocity.cpp
+chrono
+-
+cmath
+-
+future
+-
+iostream
+-
+thread
+-
+mavsdk/mavsdk.h
+-
+mavsdk/plugins/action/action.h
+-
+mavsdk/plugins/offboard/offboard.h
+-
+mavsdk/plugins/telemetry/telemetry.h
+-
+

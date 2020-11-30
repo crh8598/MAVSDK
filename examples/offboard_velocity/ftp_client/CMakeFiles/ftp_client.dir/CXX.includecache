@@ -1,0 +1,24 @@
+#IncludeRegexLine: ^[ 	]*[#%][ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+/home/cho/Documents/pixhawk/mavsdk/MAVSDK/examples/ftp_client/ftp_client.cpp
+mavsdk/mavsdk.h
+-
+mavsdk/plugins/ftp/ftp.h
+-
+functional
+-
+future
+-
+iostream
+-
+iomanip
+-
+cstring
+-
+

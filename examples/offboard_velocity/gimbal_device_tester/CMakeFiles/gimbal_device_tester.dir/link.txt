@@ -1,0 +1,1 @@
+/usr/lib/ccache/c++    -rdynamic CMakeFiles/gimbal_device_tester.dir/gimbal_device_tester.cpp.o  -o gimbal_device_tester  -Wl,-rpath,/usr/local/lib /usr/local/lib/libmavsdk_mavlink_passthrough.so.0.35.0 /usr/local/lib/libmavsdk.so.0.35.0 -lpthread 

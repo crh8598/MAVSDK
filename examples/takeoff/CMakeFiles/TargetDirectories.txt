@@ -1,0 +1,3 @@
+/home/cho/Documents/pixhawk/mavsdk/MAVSDK/examples/takeoff/CMakeFiles/rebuild_cache.dir
+/home/cho/Documents/pixhawk/mavsdk/MAVSDK/examples/takeoff/CMakeFiles/edit_cache.dir
+/home/cho/Documents/pixhawk/mavsdk/MAVSDK/examples/takeoff/CMakeFiles/takeoff_and_land.dir

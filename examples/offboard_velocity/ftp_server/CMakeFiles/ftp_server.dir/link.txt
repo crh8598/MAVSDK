@@ -1,0 +1,1 @@
+/usr/lib/ccache/c++     CMakeFiles/ftp_server.dir/ftp_server.cpp.o  -o ftp_server  -Wl,-rpath,/usr/local/lib /usr/local/lib/libmavsdk_ftp.so.0.35.0 /usr/local/lib/libmavsdk.so.0.35.0 -lpthread 
