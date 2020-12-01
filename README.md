@@ -49,3 +49,7 @@ Quick Links:
 ## License
 
 This project is licensed under the permissive BSD 3-clause, see [LICENSE.md](LICENSE.md).
+
+## 나만의 코드 작성법
+
+참조는 examples 의 takeoff 파일을 참조하면 된다.
