@@ -1,0 +1,10 @@
+# Hashes of file build rules.
+4f546c461a5076c913a21c86e322ba7e CMakeFiles/tinyxml2
+8f5ee9b8e88d1ea1e96154a47ed6aa31 CMakeFiles/tinyxml2-complete
+a6679991d9d8c87a19acd2c6c004e4f7 tinyxml2/src/tinyxml2-stamp/tinyxml2-build
+b5388c658ded6c199606857f4bf36dbb tinyxml2/src/tinyxml2-stamp/tinyxml2-configure
+9317b27f14a33bf5f4f5151b2d92798a tinyxml2/src/tinyxml2-stamp/tinyxml2-download
+466bc91437742c2e5c7769d2d5de33fc tinyxml2/src/tinyxml2-stamp/tinyxml2-install
+8f9c981a6ffe7b0832ce13e448d18929 tinyxml2/src/tinyxml2-stamp/tinyxml2-mkdir
+f0e69b6fab9d0db95fd6459c93590f7d tinyxml2/src/tinyxml2-stamp/tinyxml2-patch
+472b45f30e1d4b923622af2d52b36fce tinyxml2/src/tinyxml2-stamp/tinyxml2-update

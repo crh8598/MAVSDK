@@ -1,0 +1,3 @@
+/home/cho/Documents/pixhawk/mavsdk/MAVSDK/third_party/tinyxml2/CMakeFiles/rebuild_cache.dir
+/home/cho/Documents/pixhawk/mavsdk/MAVSDK/third_party/tinyxml2/CMakeFiles/edit_cache.dir
+/home/cho/Documents/pixhawk/mavsdk/MAVSDK/third_party/tinyxml2/CMakeFiles/tinyxml2.dir

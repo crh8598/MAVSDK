@@ -1,0 +1,3 @@
+/home/cho/Documents/pixhawk/mavsdk/MAVSDK/third_party/zlib/CMakeFiles/rebuild_cache.dir
+/home/cho/Documents/pixhawk/mavsdk/MAVSDK/third_party/zlib/CMakeFiles/edit_cache.dir
+/home/cho/Documents/pixhawk/mavsdk/MAVSDK/third_party/zlib/CMakeFiles/zlib.dir

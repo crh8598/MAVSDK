@@ -1,0 +1,10 @@
+# Hashes of file build rules.
+6ed98f8d7900aa28c43d174ed395080e CMakeFiles/jsoncpp
+db1e8382c4d26e187b244c4315a40003 CMakeFiles/jsoncpp-complete
+e8edff747e55fcfc4b4b3d1763ccf2e3 jsoncpp/src/jsoncpp-stamp/jsoncpp-build
+69062f961fc51dfb02910f3a9b322045 jsoncpp/src/jsoncpp-stamp/jsoncpp-configure
+d43230d0fb7f06852785c1f17a550146 jsoncpp/src/jsoncpp-stamp/jsoncpp-download
+a8a5ac2717fc8f6303e5e783910e7368 jsoncpp/src/jsoncpp-stamp/jsoncpp-install
+667302296c5ddd139d3ed7255b1fe8c8 jsoncpp/src/jsoncpp-stamp/jsoncpp-mkdir
+5d2868f6867216aaaaaf513da27fedcb jsoncpp/src/jsoncpp-stamp/jsoncpp-patch
+90aeea11d3eac0531a1f8b370c89ce7e jsoncpp/src/jsoncpp-stamp/jsoncpp-update

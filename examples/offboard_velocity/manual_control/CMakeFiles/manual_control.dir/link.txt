@@ -1,1 +1,0 @@
-/usr/lib/ccache/c++     CMakeFiles/manual_control.dir/manual_control.cpp.o CMakeFiles/manual_control.dir/joystick.cpp.o  -o manual_control  -Wl,-rpath,/usr/local/lib /usr/local/lib/libmavsdk_action.so.0.35.0 /usr/local/lib/libmavsdk_telemetry.so.0.35.0 /usr/local/lib/libmavsdk_manual_control.so /usr/local/lib/libmavsdk.so.0.35.0 -lSDL2 -lpthread 

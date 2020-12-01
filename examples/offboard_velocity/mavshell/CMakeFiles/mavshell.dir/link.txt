@@ -1,1 +1,0 @@
-/usr/lib/ccache/c++     CMakeFiles/mavshell.dir/mavshell.cpp.o  -o mavshell  -Wl,-rpath,/usr/local/lib /usr/local/lib/libmavsdk_shell.so.0.35.0 /usr/local/lib/libmavsdk.so.0.35.0 

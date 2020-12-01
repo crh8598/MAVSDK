@@ -1,0 +1,3 @@
+/home/cho/Documents/pixhawk/mavsdk/MAVSDK/third_party/jsoncpp/CMakeFiles/edit_cache.dir
+/home/cho/Documents/pixhawk/mavsdk/MAVSDK/third_party/jsoncpp/CMakeFiles/rebuild_cache.dir
+/home/cho/Documents/pixhawk/mavsdk/MAVSDK/third_party/jsoncpp/CMakeFiles/jsoncpp.dir

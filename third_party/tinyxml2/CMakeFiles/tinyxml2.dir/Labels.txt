@@ -1,0 +1,13 @@
+# Target labels
+ tinyxml2
+# Source files and their labels
+/home/cho/Documents/pixhawk/mavsdk/MAVSDK/third_party/tinyxml2/CMakeFiles/tinyxml2
+/home/cho/Documents/pixhawk/mavsdk/MAVSDK/third_party/tinyxml2/CMakeFiles/tinyxml2.rule
+/home/cho/Documents/pixhawk/mavsdk/MAVSDK/third_party/tinyxml2/CMakeFiles/tinyxml2-complete.rule
+/home/cho/Documents/pixhawk/mavsdk/MAVSDK/third_party/tinyxml2/tinyxml2/src/tinyxml2-stamp/tinyxml2-install.rule
+/home/cho/Documents/pixhawk/mavsdk/MAVSDK/third_party/tinyxml2/tinyxml2/src/tinyxml2-stamp/tinyxml2-mkdir.rule
+/home/cho/Documents/pixhawk/mavsdk/MAVSDK/third_party/tinyxml2/tinyxml2/src/tinyxml2-stamp/tinyxml2-download.rule
+/home/cho/Documents/pixhawk/mavsdk/MAVSDK/third_party/tinyxml2/tinyxml2/src/tinyxml2-stamp/tinyxml2-update.rule
+/home/cho/Documents/pixhawk/mavsdk/MAVSDK/third_party/tinyxml2/tinyxml2/src/tinyxml2-stamp/tinyxml2-patch.rule
+/home/cho/Documents/pixhawk/mavsdk/MAVSDK/third_party/tinyxml2/tinyxml2/src/tinyxml2-stamp/tinyxml2-configure.rule
+/home/cho/Documents/pixhawk/mavsdk/MAVSDK/third_party/tinyxml2/tinyxml2/src/tinyxml2-stamp/tinyxml2-build.rule

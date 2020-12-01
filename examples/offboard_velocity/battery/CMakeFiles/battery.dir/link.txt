@@ -1,1 +1,0 @@
-/usr/lib/ccache/c++     CMakeFiles/battery.dir/battery.cpp.o  -o battery  -Wl,-rpath,/usr/local/lib /usr/local/lib/libmavsdk_telemetry.so.0.35.0 /usr/local/lib/libmavsdk_mavlink_passthrough.so.0.35.0 /usr/local/lib/libmavsdk.so.0.35.0 
