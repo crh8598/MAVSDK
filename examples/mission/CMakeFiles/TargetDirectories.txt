@@ -1,3 +1,0 @@
-/home/cho/Documents/pixhawk/mavsdk/MAVSDK/examples/mission/CMakeFiles/rebuild_cache.dir
-/home/cho/Documents/pixhawk/mavsdk/MAVSDK/examples/mission/CMakeFiles/edit_cache.dir
-/home/cho/Documents/pixhawk/mavsdk/MAVSDK/examples/mission/CMakeFiles/mission.dir
