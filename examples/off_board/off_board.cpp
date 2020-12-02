@@ -22,8 +22,6 @@ using namespace mavsdk;
 #define TELEMETRY_CONSOLE_TEXT "\033[34m" // Turn text on console blue
 #define NORMAL_CONSOLE_TEXT "\033[0m" // Restore normal console colour
 
-
-
 // 각종 함수 선언
 
 void component_discovered(ComponentType component_type);
@@ -31,7 +29,7 @@ void usage(std::string bin_name);
 inline void handle_action_err_exit(Action::Result result, const std::string& message);
 inline void handle_mission_err_exit(Mission::Result result, const std::string& message);
 inline void handle_connection_err_exit(ConnectionResult result, const std::string& message);
-bool offboard_ctrl_body(std::shared_ptr<mavsdk::Offboard>offboard);
+bool offboard_ctrl_body(std::shared_ptr<mavsdk::Offboard> offboard);
 int main(int argc, char** argv)
 {
     Mavsdk mavsdk;
@@ -85,17 +83,16 @@ int main(int argc, char** argv)
             std::cout << (unsigned)component_type;
         } // component_type에 unsigned를 꼭 붙혀야됨.
     );
-      std::this_thread::sleep_for(std::chrono::seconds(2));
-
+    std::this_thread::sleep_for(std::chrono::seconds(2));
 
     auto telemetry = std::make_shared<Telemetry>(system);
 
     while (!telemetry->health_all_ok()) {
         std::cout << "Waiting for system to be ready" << std::endl;
-         std::this_thread::sleep_for(std::chrono::seconds(1));
+        std::this_thread::sleep_for(std::chrono::seconds(1));
     }
 
-    //-------------------------------------------------------- off board---------------------------------------------------------------------------
+    //-------------------------------------------------------- offboard---------------------------------------------------------------------------
     auto action = std::make_shared<Action>(system);
     auto offboard = std::make_shared<Offboard>(system);
     {
@@ -108,30 +105,29 @@ int main(int argc, char** argv)
         const Action::Result takeoff_result = action->takeoff();
         std::this_thread::sleep_for(std::chrono::seconds(10));
         handle_action_err_exit(takeoff_result, "takeoff failed: ");
-        
     }
 
     bool ret = offboard_ctrl_body(offboard);
     std::this_thread::sleep_for(std::chrono::seconds(10));
 
-    action->set_return_to_launch_altitude(15.0f); 
+    action->set_return_to_launch_altitude(15.0f);
     const Action::Result rtl_result = action->return_to_launch();
     if (rtl_result != Action::Result::Success) {
-    //RTL failed, so exit (in reality might send kill command.)
-    return 1;
+        // RTL failed, so exit (in reality might send kill command.)
+        return 1;
     }
-    
-
 
     return 0;
 }
 
-bool offboard_ctrl_body(std::shared_ptr<mavsdk::Offboard>offboard)
+bool offboard_ctrl_body(std::shared_ptr<mavsdk::Offboard> offboard)
 {
     Offboard::VelocityBodyYawspeed control_stick{};
     offboard->set_velocity_body(control_stick);
     Offboard::Result off_board_result = offboard->start();
-    if(off_board_result != Offboard::Result::Success){return 1;}
+    if (off_board_result != Offboard::Result::Success) {
+        return 1;
+    }
     control_stick.down_m_s = 0.0f;
     control_stick.yawspeed_deg_s = 60.0f;
     control_stick.forward_m_s = 2.3f;
@@ -141,7 +137,6 @@ bool offboard_ctrl_body(std::shared_ptr<mavsdk::Offboard>offboard)
     off_board_result = offboard->stop();
     return true;
 }
-
 
 void usage(std::string bin_name)
 {

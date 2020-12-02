@@ -51,7 +51,7 @@ static Mission::MissionItem make_mission_item(
 inline void handle_action_err_exit(Action::Result result, const std::string& message);
 inline void handle_mission_err_exit(Mission::Result result, const std::string& message);
 inline void handle_connection_err_exit(ConnectionResult result, const std::string& message);
-
+std::vector<Mission::MissionItem> rise_circle(int mis_num,int cycle,float alt,double x, double y);
 int main(int argc, char** argv)
 {
     Mavsdk mavsdk;
@@ -105,37 +105,25 @@ int main(int argc, char** argv)
             std::cout << (unsigned)component_type;
         } // component_type에 unsigned를 꼭 붙혀야됨.
     );
-      std::this_thread::sleep_for(std::chrono::seconds(2));
-
+    std::this_thread::sleep_for(std::chrono::seconds(2));
 
     auto telemetry = std::make_shared<Telemetry>(system);
 
     while (!telemetry->health_all_ok()) {
         std::cout << "Waiting for system to be ready" << std::endl;
-         std::this_thread::sleep_for(std::chrono::seconds(1));
+        std::this_thread::sleep_for(std::chrono::seconds(1));
     }
 
-    //-------------------------------------------------------- mission---------------------------------------------------------------------------
+    //--------------------------------------------------------
+    //mission---------------------------------------------------------------------------
 
     auto mission = std::make_shared<Mission>(system);
     std::vector<Mission::MissionItem> mission_items;
-    //  mission 설정
-    int mis_num = 30;
+    
+    //make mission
     double x = telemetry->position().longitude_deg;
     double y = telemetry->position().latitude_deg;
-    double val = 0;
-    for(int i = 0; i<mis_num;i++){
-        val = double(i)/(mis_num-1);
-        mission_items.push_back(make_mission_item(
-                y+0.000084*sin(M_PI_2*val),
-                x+0.00012*cos(M_PI_2*val),
-                10.0f,
-                5.0f,
-                true,
-                20.0f,
-                60.0f,
-                Mission::MissionItem::CameraAction::None));
-    }    
+    mission_items = rise_circle(15,5,3.0f,x,y);
 
     //미션 업로드
     {
@@ -157,7 +145,7 @@ int main(int argc, char** argv)
         std::cout << "Mission uploaded." << std::endl;
     }
 
-   // 미션 시작을 위한 변수선언.
+    // 미션 시작을 위한 변수선언.
     auto action = std::make_shared<Action>(system);
     std::cout << "Arming..." << std::endl;
     const Action::Result arm_result = action->arm();
@@ -178,7 +166,7 @@ int main(int argc, char** argv)
             }
         });
 
-    //Starting mission
+    // Starting mission
     {
         std::cout << "Starting mission." << std::endl;
         auto prom = std::make_shared<std::promise<Mission::Result>>();
@@ -191,7 +179,6 @@ int main(int argc, char** argv)
         const Mission::Result result = future_result.get();
         handle_mission_err_exit(result, "Mission start failed: ");
     }
-
 
     while (!mission->is_mission_finished().second) {
         std::this_thread::sleep_for(std::chrono::seconds(1));
@@ -209,7 +196,7 @@ int main(int argc, char** argv)
     }
 
     // We need to wait a bit, otherwise the armed state might not be correct yet.
-     std::this_thread::sleep_for(std::chrono::seconds(1));
+    std::this_thread::sleep_for(std::chrono::seconds(1));
 
     while (telemetry->armed()) {
         // Wait until we're done.
@@ -220,8 +207,13 @@ int main(int argc, char** argv)
 }
 
 Mission::MissionItem make_mission_item(
-    double latitude_deg, double longitude_deg, float relative_altitude_m, float speed_m_s,
-    bool is_fly_through, float gimbal_pitch_deg, float gimbal_yaw_deg,
+    double latitude_deg,
+    double longitude_deg,
+    float relative_altitude_m,
+    float speed_m_s,
+    bool is_fly_through,
+    float gimbal_pitch_deg,
+    float gimbal_yaw_deg,
     Mission::MissionItem::CameraAction camera_action)
 {
     Mission::MissionItem new_item{};
@@ -259,4 +251,35 @@ inline void handle_connection_err_exit(ConnectionResult result, const std::strin
         std::cerr << ERROR_CONSOLE_TEXT << message << result << NORMAL_CONSOLE_TEXT << std::endl;
         exit(EXIT_FAILURE);
     }
+}
+
+/** Rise cycle generate mission that rotate around the center point and raise the altitude.    
+mis_num : number of mission for 1 circle. recommend value is 15.
+cycle : rotate number, alt : start altitude.
+
+return set of (misnum x cycle) mission.
+**/
+std::vector<Mission::MissionItem> rise_circle(int mis_num,int cycle,float alt,double longitude, double latitude)
+{
+ 
+
+    std::vector<Mission::MissionItem> mission_items;
+    double seq = 0;
+    for (int j = 1; j < cycle; j++) {
+         alt +=float(j/10);
+        for (int i = 1; i < mis_num; i++) {
+            seq = double(i) / (mis_num - 1);
+            alt +=float(i/10);
+            mission_items.push_back(make_mission_item(
+                latitude + 0.000084 * sin(M_PI_2 * seq),
+                longitude + 0.00012 * cos(M_PI_2 * seq),
+                alt,
+                5.0f,
+                true,
+                20.0f,
+                60.0f,
+                Mission::MissionItem::CameraAction::None));
+        }
+    }
+    return mission_items;
 }
