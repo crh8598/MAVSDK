@@ -20,7 +20,7 @@ using namespace mavsdk;
 #define ERROR_CONSOLE_TEXT "\033[31m" // Turn text on console red
 #define TELEMETRY_CONSOLE_TEXT "\033[34m" // Turn text on console blue
 #define NORMAL_CONSOLE_TEXT "\033[0m" // Restore normal console colour
-#define M_PI_2 6.28318530718
+// #define M_PI 3.14159265359
 
 void usage(std::string bin_name)
 {
@@ -40,18 +40,15 @@ void component_discovered(ComponentType component_type)
 
 // mission을 생성하는 함수 선언
 static Mission::MissionItem make_mission_item(
-    double latitude_deg,
-    double longitude_deg,
-    float relative_altitude_m,
-    float speed_m_s,
-    bool is_fly_through,
-    float gimbal_pitch_deg,
-    float gimbal_yaw_deg,
-    Mission::MissionItem::CameraAction camera_action);
+    double latitude_deg, double longitude_deg,float relative_altitude_m,float speed_m_s, 
+    bool is_fly_through, float gimbal_pitch_deg,float gimbal_yaw_deg, Mission::MissionItem::CameraAction camera_action);
 inline void handle_action_err_exit(Action::Result result, const std::string& message);
 inline void handle_mission_err_exit(Mission::Result result, const std::string& message);
 inline void handle_connection_err_exit(ConnectionResult result, const std::string& message);
-std::vector<Mission::MissionItem> rise_circle(int mis_num,int cycle,float alt,double x, double y);
+void half_circle(std::vector<Mission::MissionItem> &mission_items,int mis_num,double deg, double radius,double longitude, double latitude);
+void make_mission_point(std::vector<Mission::MissionItem> &mission_items, double x, double y);
+
+
 int main(int argc, char** argv)
 {
     Mavsdk mavsdk;
@@ -119,12 +116,36 @@ int main(int argc, char** argv)
 
     auto mission = std::make_shared<Mission>(system);
     std::vector<Mission::MissionItem> mission_items;
-    
     //make mission
-    double x = telemetry->position().longitude_deg;
-    double y = telemetry->position().latitude_deg;
-    mission_items = rise_circle(15,5,3.0f,x,y);
 
+    {
+        double radius = 0.00005;
+        std::vector<Mission::MissionItem> mission_circle;
+        double x0 = telemetry->position().longitude_deg, y0 =  telemetry->position().latitude_deg;
+        double x[3] = {x0+0.0003,x0+0.00015,x0}, y[3] =  {y0,y0+0.00018,y0};         
+        double x_avoid = x[2] + 0.5*(x[2] - x[1]), y_avoid = y[2] + 0.5*(y[1]- y[2]);
+        double deg = double(atan2(float(y[2]-y_avoid),float(x[2]- x_avoid)));
+
+        for(int i=0;i<3;i++)
+        {
+            if(i==1){
+                mission_items.push_back(make_mission_item(y[0]+y_avoid,x[0]+x_avoid,10.0f,5.0f,true,0.0f,0.0f,Mission::MissionItem::CameraAction::None)
+                //nt mis_num,double deg, double radius,double longitude, double latitude)
+                half_circle(mission_items,15,deg,radius,x_avoid,y_avoid);
+                mission_items.push_back(make_mission_item(y[i],x[i],10.0f,5.0f,true,0.0f,0.0f,Mission::MissionItem::CameraAction::None)
+            }
+            else{
+                mission_items.push_back(make_mission_item(y[i],x[i], 20.0f,
+                5.0f,
+                true,
+                20.0f,
+                60.0f,
+                Mission::MissionItem::CameraAction::None));
+            }
+        }
+        
+    
+    }
     //미션 업로드
     {
         std::cout << "Waiting to discover system..." << std::endl;
@@ -207,14 +228,8 @@ int main(int argc, char** argv)
 }
 
 Mission::MissionItem make_mission_item(
-    double latitude_deg,
-    double longitude_deg,
-    float relative_altitude_m,
-    float speed_m_s,
-    bool is_fly_through,
-    float gimbal_pitch_deg,
-    float gimbal_yaw_deg,
-    Mission::MissionItem::CameraAction camera_action)
+    double latitude_deg,double longitude_deg, float relative_altitude_m,float speed_m_s,
+    bool is_fly_through,float gimbal_pitch_deg,float gimbal_yaw_deg, Mission::MissionItem::CameraAction camera_action)
 {
     Mission::MissionItem new_item{};
     new_item.latitude_deg = latitude_deg;
@@ -253,31 +268,30 @@ inline void handle_connection_err_exit(ConnectionResult result, const std::strin
     }
 }
 
-/** Rise cycle generate mission that rotate around the center point and raise the altitude.    
-mis_num : number of mission for 1 circle. recommend value is 15.
+/** half cycle generate mission that rotate around the center point .    
+mis_num : number of mission for 1 circle. recommend value is 6.
 cycle : rotate number, alt : start altitude.
 
 return set of (misnum x cycle) mission.
 **/
-std::vector<Mission::MissionItem> rise_circle(int mis_num,int cycle,float alt,double longitude, double latitude)
+void half_circle(std::vector<Mission::MissionItem> &mission_items,int mis_num,double deg, double radius,double longitude, double latitude)
 {
-    std::vector<Mission::MissionItem> mission_items;
-    double seq = 0;
-    for (int j = 1; j < cycle; j++) {
-         alt +=float(j/10);
-        for (int i = 1; i < mis_num; i++) {
-            seq = double(i) / (mis_num - 1);
-            alt +=float(i/10);
-            mission_items.push_back(make_mission_item(
-                latitude + 0.000084 * sin(M_PI_2 * seq),
-                longitude + 0.00012 * cos(M_PI_2 * seq),
-                alt,
-                5.0f,
-                true,
-                20.0f,
-                60.0f,
-                Mission::MissionItem::CameraAction::None));
-        }
+    
+    double tmp_x, tmp_y;  // 원의 임시 포인트와 반지름(물체 중심점과 유지하는 거리)
+
+    for(int i=0; i<mis_num+1; i++){
+        tmp_x = latitude + radius*sin(deg + i*M_PI/mis_num ); // 한바퀴면 (360*i/max) * PI / 180
+        tmp_y = longitude + radius*cos(deg + i*M_PI/mis_num ); // 하지만 반바퀴이므로 (180*i/max) * PI / 180
+        make_mission_point(mission_items, tmp_x, tmp_y);
     }
-    return mission_items;
+}
+
+void make_mission_point(std::vector<Mission::MissionItem> &mission_items, double x, double y){
+    Mission::MissionItem mission_item;
+    mission_item.latitude_deg = x;    // 범위: -90 to +90
+    mission_item.longitude_deg = y;    // 범위: -180 to +180
+    mission_item.relative_altitude_m = 20.0f;    // takeoff altitude
+    mission_item.speed_m_s = 10; //단위 m/s, 시속 100km/s
+    mission_item.is_fly_through = true;   
+    mission_items.push_back(mission_item);
 }
